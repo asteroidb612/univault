@@ -204,7 +204,7 @@ appShell vaults =
                         , Tw.h_16
                         ]
                     ]
-                    [ Desktop.menu
+                    [ menu
                     , div
                         [ css
                             [ Tw.hidden
@@ -302,32 +302,7 @@ appShell vaults =
                 [ Tw.py_10
                 ]
             ]
-            [ header []
-                [ div
-                    [ css
-                        [ Tw.max_w_7xl
-                        , Tw.mx_auto
-                        , Tw.px_4
-                        , Bp.lg
-                            [ Tw.px_8
-                            ]
-                        , Bp.sm
-                            [ Tw.px_6
-                            ]
-                        ]
-                    ]
-                    [ h1
-                        [ css
-                            [ Tw.text_3xl
-                            , Tw.font_bold
-                            , Tw.leading_tight
-                            , Tw.text_gray_900
-                            ]
-                        ]
-                        [ text "Dashboard" ]
-                    ]
-                ]
-            , main_ []
+            [ main_ []
                 [ div
                     [ css
                         [ Tw.max_w_7xl
@@ -353,4 +328,40 @@ appShell vaults =
                     ]
                 ]
             ]
+        ]
+
+
+menu =
+    div
+        [ css
+            [ Tw.flex
+            ]
+        ]
+        [ div
+            [ css
+                [ Tw.flex_shrink_0
+                , Tw.flex
+                , Tw.items_center
+                ]
+            ]
+            [ img
+                [ css
+                    [ Tw.block
+                    , Tw.h_8
+                    , Tw.w_auto
+                    ]
+                , Attr.src "logo.png"
+                , Attr.alt "Univault"
+                ]
+                []
+            ]
+        , h1
+            [ css
+                [ Tw.text_3xl
+                , Tw.text_gray_900
+                , Tw.mt_3
+                , Tw.ml_4
+                ]
+            ]
+            [ text "Univault" ]
         ]
