@@ -6,7 +6,7 @@ This is an [Elm](https://elm-lang.org/) template configured for ephemeral develo
 
 Click the button below to start a new development environment:
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/avh4/gitpod-template-elm)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/asteroidb612/univault)
 
 ## Get Started With Your Own Project
 
