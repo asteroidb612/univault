@@ -1,16 +1,10 @@
 module Main exposing (main)
 
 import Browser
-import Css
 import Css.Global
-import Html.Styled as Html exposing (..)
-import Html.Styled.Attributes as Attr exposing (..)
-import Html.Styled.Events as Events exposing (onClick)
+import Html.Styled exposing (div)
 import Interface exposing (vaultTable)
 import Random
-import Svg.Styled as Svg exposing (path, svg)
-import Svg.Styled.Attributes as SvgAttr
-import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
 
 
@@ -18,7 +12,7 @@ main : Program () Model Msg
 main =
     Browser.element
         { init = initialModel
-        , view = view >> toUnstyled
+        , view = view >> Html.Styled.toUnstyled
         , update = update
         , subscriptions = always Sub.none
         }
@@ -42,13 +36,13 @@ type Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
+update msg _ =
     case msg of
         GeneratedVaults vaults ->
             ( vaults, Cmd.none )
 
 
-view : Model -> Html Msg
+view : Model -> Html.Styled.Html Msg
 view model =
     div []
         [ Css.Global.global Tw.globalStyles
@@ -59,13 +53,13 @@ view model =
 
 -- Generators
 
-
+vaultGenerator : Random.Generator Vault
 vaultGenerator =
     Random.map3 Vault
         vaultValueGenerator
         vaultValueGenerator
         vaultValueGenerator
 
-
+vaultValueGenerator : Random.Generator Int
 vaultValueGenerator =
-    Random.int 1 10
+    Random.int 1 10000
