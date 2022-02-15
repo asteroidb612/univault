@@ -1,8 +1,14 @@
-module Interface exposing (Vault, vaultTable)
+module Interface exposing (Vault, appShell, vaultTable)
 
-
+import Css
+import Css.Global
 import Html.Styled as Html exposing (..)
 import Html.Styled.Attributes as Attr exposing (..)
+import Html.Styled.Events as Events exposing (onClick)
+import Interface.Desktop as Desktop
+import Interface.Mobile as Mobile
+import Svg.Styled as Svg exposing (path, svg)
+import Svg.Styled.Attributes as SvgAttr
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
 
@@ -18,7 +24,7 @@ vaultTable vaults =
             List.indexedMap vaultRow vaults
 
         headers =
-            List.map header [ "E", "v3", "D" ]
+            List.map vaultHeader [ "E", "v3", "D" ]
     in
     div [ css [ Tw.flex, Tw.flex_col ] ]
         [ div
@@ -86,8 +92,8 @@ vaultTable vaults =
         ]
 
 
-header : String -> Html msg
-header label =
+vaultHeader : String -> Html msg
+vaultHeader label =
     th
         [ Attr.scope "col"
         , css
@@ -160,4 +166,191 @@ vaultRow index vault =
                 ]
             ]
             [ text (String.fromInt vault.third) ]
+        ]
+
+
+appShell : List Vault -> Html msg
+appShell vaults =
+    div
+        [ css
+            [ Tw.min_h_screen
+            , Tw.bg_white
+            ]
+        ]
+        [ nav
+            [ css
+                [ Tw.bg_white
+                , Tw.border_b
+                , Tw.border_gray_200
+                ]
+            ]
+            [ div
+                [ css
+                    [ Tw.max_w_7xl
+                    , Tw.mx_auto
+                    , Tw.px_4
+                    , Bp.lg
+                        [ Tw.px_8
+                        ]
+                    , Bp.sm
+                        [ Tw.px_6
+                        ]
+                    ]
+                ]
+                [ div
+                    [ css
+                        [ Tw.flex
+                        , Tw.justify_between
+                        , Tw.h_16
+                        ]
+                    ]
+                    [ Desktop.menu
+                    , div
+                        [ css
+                            [ Tw.hidden
+                            , Bp.sm
+                                [ Tw.ml_6
+                                , Tw.flex
+                                , Tw.items_center
+                                ]
+                            ]
+                        ]
+                        [ Desktop.notifications
+                        , div
+                            [ css
+                                [ Tw.ml_3
+                                , Tw.relative
+                                ]
+                            ]
+                            [ Desktop.profileButton
+                            , Desktop.profileDropdown
+                            ]
+                        ]
+                    , Mobile.hamburger
+                    ]
+                ]
+            , {- Mobile menu, show/hide based on menu state. -}
+              div
+                [ css
+                    [ Bp.sm
+                        [ Tw.hidden
+                        ]
+                    ]
+                ]
+                [ Mobile.menu
+                , div
+                    [ css
+                        [ Tw.pt_4
+                        , Tw.pb_3
+                        , Tw.border_t
+                        , Tw.border_gray_200
+                        ]
+                    ]
+                    [ div
+                        [ css
+                            [ Tw.flex
+                            , Tw.items_center
+                            , Tw.px_4
+                            ]
+                        ]
+                        [ div
+                            [ css
+                                [ Tw.flex_shrink_0
+                                ]
+                            ]
+                            [ img
+                                [ css
+                                    [ Tw.h_10
+                                    , Tw.w_10
+                                    , Tw.rounded_full
+                                    ]
+                                , Attr.src "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                , Attr.alt ""
+                                ]
+                                []
+                            ]
+                        , div
+                            [ css
+                                [ Tw.ml_3
+                                ]
+                            ]
+                            [ div
+                                [ css
+                                    [ Tw.text_base
+                                    , Tw.font_medium
+                                    , Tw.text_gray_800
+                                    ]
+                                ]
+                                [ text "Tom Cook" ]
+                            , div
+                                [ css
+                                    [ Tw.text_sm
+                                    , Tw.font_medium
+                                    , Tw.text_gray_500
+                                    ]
+                                ]
+                                [ text "tom@example.com" ]
+                            ]
+                        , Mobile.notifications
+                        ]
+                    , Mobile.profileDropdown
+                    ]
+                ]
+            ]
+        , div
+            [ css
+                [ Tw.py_10
+                ]
+            ]
+            [ header []
+                [ div
+                    [ css
+                        [ Tw.max_w_7xl
+                        , Tw.mx_auto
+                        , Tw.px_4
+                        , Bp.lg
+                            [ Tw.px_8
+                            ]
+                        , Bp.sm
+                            [ Tw.px_6
+                            ]
+                        ]
+                    ]
+                    [ h1
+                        [ css
+                            [ Tw.text_3xl
+                            , Tw.font_bold
+                            , Tw.leading_tight
+                            , Tw.text_gray_900
+                            ]
+                        ]
+                        [ text "Dashboard" ]
+                    ]
+                ]
+            , main_ []
+                [ div
+                    [ css
+                        [ Tw.max_w_7xl
+                        , Tw.mx_auto
+                        , Bp.lg
+                            [ Tw.px_8
+                            ]
+                        , Bp.sm
+                            [ Tw.px_6
+                            ]
+                        ]
+                    ]
+                    [ div
+                        [ css
+                            [ Tw.px_4
+                            , Tw.py_8
+                            , Bp.sm
+                                [ Tw.px_0
+                                ]
+                            ]
+                        ]
+                        [ vaultTable vaults ]
+                    ]
+                ]
+            ]
         ]

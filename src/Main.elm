@@ -3,7 +3,7 @@ module Main exposing (main)
 import Browser
 import Css.Global
 import Html.Styled exposing (div)
-import Interface exposing (vaultTable)
+import Interface exposing (appShell)
 import Random
 import Tailwind.Utilities as Tw
 
@@ -46,12 +46,13 @@ view : Model -> Html.Styled.Html Msg
 view model =
     div []
         [ Css.Global.global Tw.globalStyles
-        , vaultTable model
+        , appShell model
         ]
 
 
 
 -- Generators
+
 
 vaultGenerator : Random.Generator Vault
 vaultGenerator =
@@ -59,6 +60,7 @@ vaultGenerator =
         vaultValueGenerator
         vaultValueGenerator
         vaultValueGenerator
+
 
 vaultValueGenerator : Random.Generator Int
 vaultValueGenerator =
