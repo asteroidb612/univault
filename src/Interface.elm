@@ -1,14 +1,10 @@
 module Interface exposing (Vault, appShell, vaultTable)
 
-import Css
-import Css.Global
 import Html.Styled as Html exposing (..)
 import Html.Styled.Attributes as Attr exposing (..)
-import Html.Styled.Events as Events exposing (onClick)
 import Interface.Desktop as Desktop
 import Interface.Mobile as Mobile
-import Svg.Styled as Svg exposing (path, svg)
-import Svg.Styled.Attributes as SvgAttr
+import PriceChart
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
 
@@ -169,8 +165,8 @@ vaultRow index vault =
         ]
 
 
-appShell : List Vault -> Html msg
-appShell vaults =
+appShell : List Vault -> List { x : Float, y : Float } -> Html msg
+appShell vaults data =
     div
         [ css
             [ Tw.min_h_screen
@@ -237,8 +233,7 @@ appShell vaults =
                         ]
                     ]
                 ]
-                [ Mobile.menu
-                , div
+                [ div
                     [ css
                         [ Tw.pt_4
                         , Tw.pb_3
@@ -304,6 +299,29 @@ appShell vaults =
             ]
             [ main_ []
                 [ div
+                    [ css
+                        [ Tw.max_w_7xl
+                        , Tw.mx_auto
+                        , Bp.lg
+                            [ Tw.px_8
+                            ]
+                        , Bp.sm
+                            [ Tw.px_6
+                            ]
+                        ]
+                    ]
+                    [ div
+                        [ css
+                            [ Tw.px_4
+                            , Tw.py_8
+                            , Bp.sm
+                                [ Tw.px_0
+                                ]
+                            ]
+                        ]
+                        [ PriceChart.chart data ]
+                    ]
+                , div
                     [ css
                         [ Tw.max_w_7xl
                         , Tw.mx_auto

@@ -1,4 +1,4 @@
-module Interface.Mobile exposing (hamburger, menu, notifications, profileDropdown)
+module Interface.Mobile exposing (hamburger, notifications, profileDropdown)
 
 import Css
 import Css.Global
@@ -9,96 +9,6 @@ import Svg.Styled as Svg exposing (path, svg)
 import Svg.Styled.Attributes as SvgAttr
 import Tailwind.Breakpoints as Bp
 import Tailwind.Utilities as Tw
-
-
-menu : Html msg
-menu =
-    div
-        [ css
-            [ Tw.pt_2
-            , Tw.pb_3
-            , Tw.space_y_1
-            ]
-        ]
-        [ {- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800" -}
-          a
-            [ Attr.href "#"
-            , css
-                [ Tw.bg_indigo_50
-                , Tw.border_indigo_500
-                , Tw.text_indigo_700
-                , Tw.block
-                , Tw.pl_3
-                , Tw.pr_4
-                , Tw.py_2
-                , Tw.border_l_4
-                , Tw.text_base
-                , Tw.font_medium
-                ]
-            , Attr.attribute "aria-current" "page"
-            ]
-            [ text "Dashboard" ]
-        , a
-            [ Attr.href "#"
-            , css
-                [ Tw.border_transparent
-                , Tw.text_gray_600
-                , Tw.block
-                , Tw.pl_3
-                , Tw.pr_4
-                , Tw.py_2
-                , Tw.border_l_4
-                , Tw.text_base
-                , Tw.font_medium
-                , Css.hover
-                    [ Tw.bg_gray_50
-                    , Tw.border_gray_300
-                    , Tw.text_gray_800
-                    ]
-                ]
-            ]
-            [ text "Team" ]
-        , a
-            [ Attr.href "#"
-            , css
-                [ Tw.border_transparent
-                , Tw.text_gray_600
-                , Tw.block
-                , Tw.pl_3
-                , Tw.pr_4
-                , Tw.py_2
-                , Tw.border_l_4
-                , Tw.text_base
-                , Tw.font_medium
-                , Css.hover
-                    [ Tw.bg_gray_50
-                    , Tw.border_gray_300
-                    , Tw.text_gray_800
-                    ]
-                ]
-            ]
-            [ text "Projects" ]
-        , a
-            [ Attr.href "#"
-            , css
-                [ Tw.border_transparent
-                , Tw.text_gray_600
-                , Tw.block
-                , Tw.pl_3
-                , Tw.pr_4
-                , Tw.py_2
-                , Tw.border_l_4
-                , Tw.text_base
-                , Tw.font_medium
-                , Css.hover
-                    [ Tw.bg_gray_50
-                    , Tw.border_gray_300
-                    , Tw.text_gray_800
-                    ]
-                ]
-            ]
-            [ text "Calendar" ]
-        ]
 
 
 notifications =

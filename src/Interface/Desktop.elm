@@ -36,6 +36,7 @@ profileDropdown =
             , Tw.ring_1
             , Tw.ring_black
             , Tw.ring_opacity_5
+            , Tw.z_10
             , Css.focus
                 [ Tw.outline_none
                 ]
